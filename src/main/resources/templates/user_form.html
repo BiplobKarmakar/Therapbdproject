@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit User  Page </title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" 
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+       <div class="container text-center">
+<div>
+             <h1>Edit User </h1>
+</div>
+
+<form th:action ="@{/user/save}" method="post"
+style="max-width: 600px; margin:0 auto;"
+th:object="${user}">
+
+<input type="hidden" th: field="*{id}" />
+<div class="m-3">
+        <div class="form-group row">
+<label class="col-4 col-form-label">E-mail: </label>
+<div class="col-8">
+<input type="email" class="form-control" th:field="*{email}" required/>
+</div>
+
+</div>
+<div class="form-group row">
+<label class="col-4 col-form-label">Password: </label>
+<div class="col-8">
+<input type="password" class="form-control"  th:field="*{password}" required/>
+</div>
+
+</div>
+<div class="form-group row">
+<label class="col-4 col-form-label"> First Name: </label>
+<div class="col-8">
+<input type="text" class="form-control"  th:field="*{firstName}" required/>
+</div>
+
+</div>
+<div class="form-group row">
+<label class="col-4 col-form-label">Last Name </label>
+<div class="col-8">
+<input type="text" class="form-control"  th:field="*{lastName}" required/>
+</div>
+<div class="form-group row">
+<label class="col-4 col-form-label">Assigned Roles </label>
+<div class="col-8">
+<th: block th:each="role :${listRoles}">
+<input type="checkbox" th:filed="{roles}"
+th:value="${role.id}"
+th:text="${role.name}" class="m-2"/>
+
+</div>
+</div>
+<div>
+        <button type="submit" class="btn btn-primary">Update </button>
+</div>
+</div>
+</form>
+</div>
+
+   
+</body>
+</html>
